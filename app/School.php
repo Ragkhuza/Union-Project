@@ -32,4 +32,9 @@ class School extends Authenticatable
             $q->where('name', 'student');
         });
     }
+
+    public function courses()
+    {
+        return $this->hasMany('App\Course');
+    }
 }

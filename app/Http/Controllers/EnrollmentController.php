@@ -7,13 +7,20 @@ use Illuminate\Http\Request;
 
 class EnrollmentController extends Controller
 {
-    public function transfer(Request $request, $school)
+    public function showTransfer(School $school)
     {
-        $school = School::find($school);
+        return view('school.transfer', compact('school'));
+    }
+
+    public function transfer(Request $request)
+    {
+//        dd($request->all());
+        $school = School::find($request->school_id);
         $student = auth()->user();
-
+        $student->course_id = $request->course_id;
         $student->school_id = $school->id;
+        $student->save();
 
-        return back()->with('success', 'Transfered Successfully');
+        return redirect(route('home'))->with('success', 'successfully transferred');
     }
 }

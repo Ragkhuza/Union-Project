@@ -62,14 +62,11 @@
                             <label class="form-check-label" for="interviews">
                                 Needs to Interview students?
                             </label>
-
-
                         </div>
 
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary mb-2 col-md-3 offset-md-9">Confirm</button>
                         </div>
-
 
                     </form>
                 </div>

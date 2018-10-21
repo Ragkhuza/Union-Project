@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\School;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -15,9 +16,12 @@ class SchoolController extends Controller
 
     public function index()
     {
-        $students = auth()->user()->students->all();
+        $students = auth()->user()->students;
 
-        return view('school.home', compact('students'));
+        $out_students = $students->where('transferring_to', '!=', null)->all();
+        $in_students = User::where('transferring_to', auth()->id())->get();
+
+        return view('school.home', compact('students', 'out_students', 'in_students'));
     }
 
     public function profile(School $school)

@@ -12,12 +12,15 @@ class SchoolTableSeeder extends Seeder
      */
     public function run()
     {
-        School::create([
-            'name' => 'feutech',
-            'email' => 'feutech@gmail.com',
-            'req_grade' => 1.0,
-            'interviews' => true,
-            'password' => Hash::make('12345678')
-        ]);
+        for ($i = 0; $i < 100; $i++) {
+            School::create([
+                'name' => "feutech$i",
+                'email' => "feutech$i@gmail.com",
+                'req_grade' => 1.0,
+                'interviews' => true,
+                'password' => Hash::make('12345678')
+            ]);
+        }
+
     }
 }

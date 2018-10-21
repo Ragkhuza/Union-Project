@@ -23,6 +23,8 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('school_id')->nullable();
+            $table->string('course_id')->nullable();
+            $table->integer('transferring_to')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

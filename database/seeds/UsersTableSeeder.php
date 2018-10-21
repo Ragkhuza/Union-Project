@@ -1,6 +1,8 @@
 <?php
 
+use App\Course;
 use App\Role;
+use App\School;
 use App\User;
 use Illuminate\Database\Seeder;
 
@@ -13,6 +15,8 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
+        $max_school = School::count() - 1;
+        $max_course = Course::count() - 1;
 
 /*        $role1 = Role::create([
             'name' => 'school',
@@ -38,20 +42,22 @@ class UsersTableSeeder extends Seeder
         ]);
 
         $user1->roles()->attach($role1->id);*/
-
-        $user2 = User::create([
-            'first_name'  => 'stud_first',
-            'middle_name' => 'student',
-            'last_name'   => 'stud_last',
-            'email'       => 'student@gmail.com',
-            'gender'       => 'male',
+        for ($i = 0; $i < 100; $i++) {
+            $user2 = User::create([
+                'first_name'  => "juancho$i",
+                'middle_name' => 'student',
+                'last_name'   => 'dela cruz',
+                'email'       => "student$i@gmail.com",
+                'gender'      => 'male',
 //            'contact'       => 9178373873,
-            'password'    => Hash::make('12345678'),
-            'school_id'    => 1,
+                'password'    => Hash::make('12345678'),
+                'school_id'   => rand(1, $max_school),
+                'course_id'   => rand(1, $max_course),
 //            'activated'   => true,
-        ]);
+            ]);
 
-        $user2->roles()->attach($role2->id);
+            $user2->roles()->attach($role2->id);
+        }
 
         $user3 = User::create([
             'first_name'  => 'DEP',

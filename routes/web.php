@@ -18,7 +18,8 @@ Route::post('/add/school', 'SchoolController@create')->name('add.school');
 
 Route::view('/payments/success', 'successful-payment')->name('payment.success');
 
-Route::get('/transfer/{school}', 'EnrollmentController@transfer')->name('transfer');
+Route::get('/transfer/{school}', 'EnrollmentController@showTransfer')->name('transfer.show');
+Route::post('/transfer', 'EnrollmentController@transfer')->name('transfer');
 
 Route::get('logout', function() {
     Auth::logout();

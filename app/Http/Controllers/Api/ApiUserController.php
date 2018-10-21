@@ -43,9 +43,9 @@ class ApiUserController extends Controller
         $access_token = $cont_arr['access_token'];
         $this->makePayment($access_token);
 
-        /*'client_id' => '684d855d-e843-4746-9d0d-3860f183b0ea',
-                'code' => $request->code,*/
-//        dd($response);
+        $contents = $response->getBody()->getContents();
+        $cont_arr = json_decode($contents, true);
+        return view('successful-payment', compact('cont_arr'));
     }
 
     public function makePayment($access_token)
@@ -85,7 +85,6 @@ class ApiUserController extends Controller
         ]);
 
 //        dd($response->getBody()->getContents());
-        return redirect(route('payment.success'));
     }
 
 }
